@@ -25,7 +25,7 @@ const PostJob = () => {
         position: 0,
         companyId: ""
     });
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading]= useState(false);
     const navigate = useNavigate();
 
     const { companies } = useSelector(store => store.company);
@@ -34,27 +34,27 @@ const PostJob = () => {
     };
 
     const selectChangeHandler = (value) => {
-        const selectedCompany = companies.find((company) => company.name.toLowerCase() === value);
-        setInput({ ...input, companyId: selectedCompany._id });
+        const selectedCompany = companies.find((company)=> company.name.toLowerCase() === value);
+        setInput({...input, companyId:selectedCompany._id});
     };
 
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
-                headers: {
-                    'Content-Type': 'application/json'
+            const res = await axios.post(`${JOB_API_END_POINT}/post`, input,{
+                headers:{
+                    'Content-Type':'application/json'
                 },
-                withCredentials: true
+                withCredentials:true
             });
-            if (res.data.success) {
+            if(res.data.success){
                 toast.success(res.data.message);
                 navigate("/admin/jobs");
             }
         } catch (error) {
             toast.error(error.response.data.message);
-        } finally {
+        } finally{
             setLoading(false);
         }
     }
@@ -63,7 +63,7 @@ const PostJob = () => {
         <div>
             <Navbar />
             <div className='flex items-center justify-center w-screen my-5'>
-                <form onSubmit={submitHandler} className='p-8 max-w-4xl border border-gray-200 shadow-lg rounded-md'>
+                <form onSubmit = {submitHandler} className='p-8 max-w-4xl border border-gray-200 shadow-lg rounded-md'>
                     <div className='grid grid-cols-2 gap-2'>
                         <div>
                             <Label>Title</Label>
@@ -166,7 +166,7 @@ const PostJob = () => {
                                 </Select>
                             )
                         }
-                    </div>
+                    </div> 
                     {
                         loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Post New Job</Button>
                     }

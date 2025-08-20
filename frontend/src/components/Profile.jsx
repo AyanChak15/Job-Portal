@@ -16,7 +16,7 @@ const isResume = true;
 const Profile = () => {
     useGetAppliedJobs();
     const [open, setOpen] = useState(false);
-    const { user } = useSelector(store => store.auth);
+    const {user} = useSelector(store=>store.auth);
 
     return (
         <div>
@@ -64,7 +64,7 @@ const Profile = () => {
                 {/* Applied Job Table   */}
                 <AppliedJobTable />
             </div>
-            <UpdateProfileDialog open={open} setOpen={setOpen} />
+            <UpdateProfileDialog open={open} setOpen={setOpen}/>
         </div>
     )
 }
